@@ -1,6 +1,8 @@
 [submodule "f-test-project"]
 	path = f-test-project
 	url = git@github.com:Innosoft-KMUTT/test-project.git
+	branch = dev
 [submodule "b-test-project"]
 	path = b-test-project
 	url = git@github.com:Innosoft-KMUTT/test-project.git
+	branch = dev
