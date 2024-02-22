@@ -1,21 +1,4 @@
-FROM ubuntu:22.04
-
-RUN apt-get update \
-	&& apt-get install -y \
-	curl \
-	git \
-	golang \
-	sudo \
-	vim \
-	wget \
-	zsh \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - \
-	&& apt-get update \
-	&& apt-get install -y \
-	nodejs \
-	&& rm -rf /var/lib/apt/lists/*
+FROM askforanywork/dev-coder:latest
 
 RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-25.0.3.tgz \
 	&& tar -xzvf docker-25.0.3.tgz \

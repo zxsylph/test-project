@@ -8,7 +8,9 @@ resource "coder_agent" "main" {
     curl -fsSL https://code-server.dev/install.sh | sh -s -- --method=standalone --prefix=/tmp/code-server --version 4.19.1
     /tmp/code-server/bin/code-server --auth none --port 13337 >/tmp/code-server.log 2>&1 &
     /tmp/init-on-create.sh
+    sudo nginx &
     git config --global credential.useHttpPath true
+    git config --global url."https://github.com/".insteadOf git@github.com:
     ${data.coder_parameter.workspace_git_clone.value}
   EOT
 

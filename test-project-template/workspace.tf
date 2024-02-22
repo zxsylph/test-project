@@ -43,14 +43,26 @@ resource "docker_container" "workspace" {
   networks_advanced {
     name = docker_network.private_network.name
   }
+
+  ports {
+    internal = 80
+    external = data.coder_parameter.nginx_external_port.value
+  }
+
   host {
     host = "host.docker.internal"
     ip   = "host-gateway"
   }
   volumes {
     container_path = "/home/${local.username}"
-    volume_name    = docker_volume.frontend.name
+    volume_name    = docker_volume.workspace.name
     read_only      = false
+  }
+
+  volumes {
+    container_path = "/etc/nginx/sites-available/default"
+    host_path      = "${abspath(path.module)}/nginx/default.conf"
+    read_only      = true
   }
 
   # Add labels in Docker to keep track of orphan resources.
